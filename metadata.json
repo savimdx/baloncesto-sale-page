@@ -1,0 +1,8 @@
+{
+  "name": "Remix: Entrenamientos de Fútbol - Página de Ventas",
+  "description": "Página de ventas premium y altamente persuasiva para la Biblioteca Digital Premium de +1000 Sesiones de Entrenamiento de Baloncesto.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

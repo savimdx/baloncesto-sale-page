@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+
+    <script>
+      window.pixelId = "6a5cbfe847462aecfb56d03e";
+      var a = document.createElement("script");
+      a.setAttribute("async", "");
+      a.setAttribute("defer", "");
+      a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+      document.head.appendChild(a);
+    </script>
+
+    <script
+      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+      data-utmify-prevent-subids
+      async
+      defer
+    ></script>
+    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>+1000 Sesiones de Entrenamientos de Fútbol - Biblioteca Digital Premium</title>
+    
+    <!-- DNS preconnect to critical asset domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://i.postimg.cc" />
+    <link rel="preconnect" href="https://fast.wistia.com" />
+    <link rel="preconnect" href="https://pay.hotmart.com" />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="https://i.postimg.cc" />
+    <link rel="dns-prefetch" href="https://fast.wistia.com" />
+    <link rel="dns-prefetch" href="https://pay.hotmart.com" />
+    
+    <!-- Parallel load Google Fonts to eliminate CSS @import blocking - optimized weights -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+
+    <!-- Preload critical Hero mockup image -->
+    <link rel="preload" as="image" href="https://i.postimg.cc/5tSBMTCh/Chat-GPT-Image-5-de-jul-de-2026-13-34-29.png" fetchpriority="high" />
+
+    <!-- Module preloads for fast client-side hydration -->
+    <link rel="modulepreload" href="/src/main.tsx" />
+
+    <script>
+      // Safe JSON.stringify wrapper to prevent circular structure serialization crashes on DOM/React objects
+      (function() {
+        var originalStringify = JSON.stringify;
+        JSON.stringify = function(value, replacer, space) {
+          var seen = new WeakSet();
+          return originalStringify(value, function(key, val) {
+            if (typeof val === 'object' && val !== null) {
+              if (seen.has(val)) {
+                return '[Circular]';
+              }
+              seen.add(val);
+              // Filter out React-specific dynamic fiber attributes on DOM nodes
+              if (key.startsWith && key.startsWith('__react')) {
+                return undefined;
+              }
+            }
+            if (replacer) {
+              return replacer(key, val);
+            }
+            return val;
+          }, space);
+        };
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
