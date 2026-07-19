@@ -955,7 +955,7 @@ export default function App() {
               <button
                 id="cta-main-purchase"
                 onClick={handleCtaClick}
-                className="w-full max-w-lg bg-[#00965e] hover:bg-[#008352] text-white font-black py-5 px-10 rounded-full shadow-[0_12px_24px_rgba(0,150,94,0.3)] hover:shadow-[0_16px_32px_rgba(0,150,94,0.45)] text-base md:text-lg lg:text-xl uppercase tracking-wider transform transition-all duration-300 hover:-translate-y-1 text-center"
+                className="w-full max-w-lg bg-[#00965e] hover:bg-[#008352] text-white font-black py-5 px-10 rounded-[20px] shadow-[0_12px_24px_rgba(0,150,94,0.3)] hover:shadow-[0_16px_32px_rgba(0,150,94,0.45)] text-base md:text-lg lg:text-xl uppercase tracking-wider transform transition-all duration-300 hover:-translate-y-1 text-center cursor-pointer"
               >
                 QUIERO ACCEDER AHORA
               </button>
@@ -1058,7 +1058,7 @@ export default function App() {
             <button
               id="cta-faq-purchase"
               onClick={handleCtaClick}
-              className="w-full max-w-lg bg-[#00965e] hover:bg-[#008352] text-white font-black py-5 px-10 rounded-full shadow-[0_12px_24px_rgba(0,150,94,0.3)] hover:shadow-[0_16px_32px_rgba(0,150,94,0.45)] text-base md:text-lg lg:text-xl uppercase tracking-wider transform transition-all duration-300 hover:-translate-y-1 text-center"
+              className="w-full max-w-lg bg-[#00965e] hover:bg-[#008352] text-white font-black py-5 px-10 rounded-[20px] shadow-[0_12px_24px_rgba(0,150,94,0.3)] hover:shadow-[0_16px_32px_rgba(0,150,94,0.45)] text-base md:text-lg lg:text-xl uppercase tracking-wider transform transition-all duration-300 hover:-translate-y-1 text-center cursor-pointer"
             >
               QUIERO ACCEDER AHORA
             </button>
