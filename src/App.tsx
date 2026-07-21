@@ -216,6 +216,52 @@ function UtmifyLink({ baseUrl, children, ...props }: UtmifyLinkProps) {
   );
 }
 
+interface OptimizedImageProps {
+  src: string;
+  alt: string;
+  className?: string;
+  wrapperClassName?: string;
+  id?: string;
+  fetchPriority?: 'high' | 'low' | 'auto';
+  loading?: 'lazy' | 'eager';
+}
+
+function OptimizedImage({
+  src,
+  alt,
+  className = "",
+  wrapperClassName = "",
+  id,
+  fetchPriority,
+  loading,
+}: OptimizedImageProps) {
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  
+  return (
+    <div className={`relative overflow-hidden bg-slate-100/50 dark:bg-slate-900/30 rounded-xl ${wrapperClassName}`}>
+      {/* Shimmer / Pulse skeleton loader */}
+      {!isLoaded && (
+        <div className="absolute inset-0 bg-slate-200/50 dark:bg-slate-800/40 animate-pulse flex items-center justify-center rounded-xl">
+          <div className="w-6 h-6 border-2 border-orange-500/30 border-t-orange-500 rounded-full animate-spin" />
+        </div>
+      )}
+      <img
+        id={id}
+        src={src}
+        alt={alt}
+        onLoad={() => setIsLoaded(true)}
+        className={`transition-all duration-700 ease-out ${
+          isLoaded ? 'opacity-100 scale-100 blur-0' : 'opacity-0 scale-98 blur-sm'
+        } ${className}`}
+        referrerPolicy="no-referrer"
+        loading={loading}
+        // @ts-ignore
+        fetchPriority={fetchPriority}
+      />
+    </div>
+  );
+}
+
 export default function App() {
   const { formattedPrice, currencyCode, isConverting, convertAndFormat } = useCurrency();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -376,12 +422,14 @@ export default function App() {
 
             {/* Product Mockup/Showcase Image */}
             <div className="w-full max-w-3xl mx-auto my-2 rounded-2xl overflow-hidden shadow-lg border border-slate-200/60 bg-white p-1.5">
-              <img
+              <OptimizedImage
                 id="hero-subheadline-image"
                 src="https://i.postimg.cc/3RFXHx91/Chat-GPT-Image-18-de-jul-de-2026-09-55-25.png"
                 alt="Vista previa de la Biblioteca de Entrenamientos"
                 className="w-full h-auto rounded-xl object-cover"
-                referrerPolicy="no-referrer"
+                fetchPriority="high"
+                loading="eager"
+                wrapperClassName="w-full"
               />
             </div>
 
@@ -546,11 +594,12 @@ export default function App() {
                     <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/10 to-orange-500/10 pointer-events-none" />
                     
                     {bonus.image ? (
-                      <img 
+                      <OptimizedImage 
                         src={bonus.image} 
                         alt={bonus.title} 
                         className="w-full h-full object-contain z-10 transition-transform duration-300 group-hover:scale-[1.05]"
-                        referrerPolicy="no-referrer"
+                        loading="lazy"
+                        wrapperClassName="w-full h-full bg-transparent"
                       />
                     ) : (
                       <>
@@ -807,11 +856,12 @@ export default function App() {
                     <div className="border-t border-slate-100 mt-6 pt-4 flex items-center gap-3">
                       {/* Avatar with fallback */}
                       <div className="w-10 h-10 rounded-full overflow-hidden bg-slate-100 border border-slate-200">
-                        <img 
+                        <OptimizedImage 
                           src={testimonial.avatarUrl} 
                           alt={testimonial.name}
                           className="w-full h-full object-cover"
-                          referrerPolicy="no-referrer"
+                          loading="lazy"
+                          wrapperClassName="w-full h-full bg-transparent"
                         />
                       </div>
                       <div>
@@ -854,11 +904,12 @@ export default function App() {
                     <div className="border-t border-slate-100 mt-6 pt-4 flex items-center gap-3">
                       {/* Avatar with fallback */}
                       <div className="w-10 h-10 rounded-full overflow-hidden bg-slate-100 border border-slate-200">
-                        <img 
+                        <OptimizedImage 
                           src={testimonial.avatarUrl} 
                           alt={testimonial.name}
                           className="w-full h-full object-cover"
-                          referrerPolicy="no-referrer"
+                          loading="lazy"
+                          wrapperClassName="w-full h-full bg-transparent"
                         />
                       </div>
                       <div>
@@ -911,12 +962,13 @@ export default function App() {
 
             {/* Product Mockup/Showcase Image */}
             <div className="w-full max-w-2xl mx-auto my-2 rounded-2xl overflow-hidden shadow-sm border border-slate-200/50 bg-white p-1">
-              <img
+              <OptimizedImage
                 id="pricing-showcase-image"
                 src="https://i.postimg.cc/3RFXHx91/Chat-GPT-Image-18-de-jul-de-2026-09-55-25.png"
                 alt="Vista previa de la Biblioteca de Entrenamientos"
                 className="w-full h-auto rounded-xl object-cover"
-                referrerPolicy="no-referrer"
+                loading="lazy"
+                wrapperClassName="w-full"
               />
             </div>
 
