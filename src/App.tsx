@@ -669,7 +669,7 @@ export default function App() {
 
 
       {/* --- SECCIÓN 4: MUESTRA DEL PRODUCTO (INTERACTIVE DRILL VIEW) --- */}
-      <section id="muestra" className="py-12 md:py-16 px-4 bg-white border-y border-slate-100 relative overflow-hidden">
+      <section id="muestra" className="pt-12 pb-6 md:pt-16 md:pb-8 px-4 bg-white border-y border-slate-100 relative overflow-hidden">
         {/* Futuristic background glow grids */}
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-100 rounded-full blur-3xl pointer-events-none opacity-40" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-100 rounded-full blur-3xl pointer-events-none opacity-40" />
@@ -678,7 +678,7 @@ export default function App() {
         <div className="max-w-6xl mx-auto relative z-10">
           
           {/* Header */}
-          <div className="text-center max-w-3xl mx-auto space-y-3 mb-10">
+          <div className="text-center max-w-3xl mx-auto space-y-3 mb-6">
             <span className="inline-flex items-center gap-1.5 text-[9px] bg-blue-50 text-blue-600 border border-blue-200/60 px-3.5 py-1.5 rounded-full font-black uppercase tracking-widest font-mono shadow-[0_0_15px_rgba(59,130,246,0.05)]">
               <Zap className="w-3 h-3 text-blue-600 animate-pulse" /> DIAGRAMAS TÁCTICOS INTERACTIVOS
             </span>
@@ -691,7 +691,7 @@ export default function App() {
           </div>
 
           {/* Infinite Scroll Preview Cards of PDF Pages */}
-          <div className="mb-14 overflow-hidden relative rounded-3xl border border-slate-200/60 bg-slate-50 p-4 py-6 shadow-xl backdrop-blur-md">
+          <div className="mb-4 overflow-hidden relative rounded-3xl border border-slate-200/60 bg-slate-50 p-4 py-6 shadow-xl backdrop-blur-md">
             {/* Fade effect on borders */}
             <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-white via-white/85 to-transparent z-10 pointer-events-none" />
             <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-white via-white/85 to-transparent z-10 pointer-events-none" />
