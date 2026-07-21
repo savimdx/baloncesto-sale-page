@@ -150,6 +150,15 @@ export const BONUSES: BonusItem[] = [
     originalPrice: 29,
     tag: "FUNDAMENTOS PRO",
     image: "https://i.postimg.cc/xqrPWwTV/Chat-GPT-Image-18-de-jul-de-2026-20-17-11.png"
+  },
+  {
+    id: "bon-4",
+    number: 4,
+    title: "Lecciones en Video de Baloncesto",
+    description: "Videotutoriales paso a paso con la demostración de jugadas preparadas, lectura táctica y corrección de errores comunes explicados en detalle.",
+    originalPrice: 59,
+    tag: "LECCIONES EN VIDEO",
+    image: "https://i.postimg.cc/SR4nyWRc/Chat-GPT-Image-20-de-jul-de-2026-20-59-47.png"
   }
 ];
 

@@ -175,15 +175,15 @@ function BasketballCourt({ players, lines }: { players: any[], lines: any[] }) {
       </div>
       
       {/* Legend below the court, no longer superimposed */}
-      <div className="bg-slate-50 border border-slate-200/80 px-4 py-3 rounded-2xl flex flex-wrap justify-between items-center text-xs text-blue-950 gap-3">
+      <div className="bg-slate-900 border border-slate-800 px-4 py-3 rounded-2xl flex flex-wrap justify-between items-center text-xs text-slate-300 gap-3">
         <div className="flex flex-wrap gap-x-4 gap-y-2">
           <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-blue-600 inline-block border border-blue-400"></span> Ofensiva (O)</span>
           <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-red-800 inline-block border border-red-500"></span> Defensora (X)</span>
           <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-orange-500 inline-block border border-white"></span> Balón</span>
         </div>
-        <div className="flex gap-3 font-mono text-[10px] bg-slate-200/50 px-2 py-1 rounded-md border border-slate-300/60">
-          <span className="text-orange-600 font-bold">--- Pase</span>
-          <span className="text-blue-700 font-bold">── Movimiento / Bote</span>
+        <div className="flex gap-3 font-mono text-[10px] bg-slate-950/60 px-2 py-1 rounded-md border border-slate-800/60">
+          <span className="text-orange-400 font-bold">--- Pase</span>
+          <span className="text-blue-400 font-bold">── Movimiento / Bote</span>
         </div>
       </div>
     </div>
@@ -526,15 +526,15 @@ export default function App() {
               REGALOS EXCLUSIVOS HOY
             </div>
             <h2 className="text-3xl md:text-4xl font-black text-blue-950 tracking-tight">
-              Recibe hoy estos 3 Bonos Exclusivos (100% Gratis)
+              Recibe hoy estos 4 Bonos Exclusivos (100% Gratis)
             </h2>
             <p className="text-sm text-blue-900/80 leading-relaxed max-w-2xl mx-auto">
-              Solo tienes que adquirir la biblioteca de entrenamientos hoy mismo para recibir como regalo tres manuales metodológicos de incalculable valor.
+              Solo tienes que adquirir la biblioteca de entrenamientos hoy mismo para recibir como regalo cuatro recursos de incalculable valor.
             </p>
           </div>
 
           {/* Bonuses layout */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
             {BONUSES.map((bonus) => (
               <div
                 key={bonus.id}
@@ -542,7 +542,7 @@ export default function App() {
               >
                 <div>
                   {/* Glowing header design representation */}
-                  <div className={`bg-white border border-slate-200/60 rounded-2xl flex flex-col items-center justify-center mb-4 h-[360px] text-center relative overflow-hidden ${bonus.image ? 'p-1' : 'p-4'}`}>
+                  <div className={`bg-white border border-slate-200/60 rounded-2xl flex flex-col items-center justify-center mb-4 h-[380px] text-center relative overflow-hidden ${bonus.image ? 'p-1' : 'p-4'}`}>
                     <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/10 to-orange-500/10 pointer-events-none" />
                     
                     {bonus.image ? (
@@ -605,19 +605,24 @@ export default function App() {
 
 
       {/* --- SECCIÓN 4: MUESTRA DEL PRODUCTO (INTERACTIVE DRILL VIEW) --- */}
-      <section id="muestra" className="py-8 md:py-12 px-4 bg-slate-50 border-b border-slate-100 relative">
-        <div className="max-w-6xl mx-auto">
+      <section id="muestra" className="py-12 md:py-16 px-4 bg-[#0a0f1d] border-y border-slate-900 relative overflow-hidden">
+        {/* Futuristic background glow grids */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-15 pointer-events-none" />
+
+        <div className="max-w-6xl mx-auto relative z-10">
           
           {/* Header */}
-          <div className="text-center max-w-3xl mx-auto space-y-2 mb-8">
-            <span className="inline-flex text-[10px] bg-blue-50 text-blue-700 border border-blue-200/60 px-3.5 py-1 rounded-full font-bold uppercase tracking-widest font-mono">
-              DISEÑO GRÁFICO INTERACTIVO
+          <div className="text-center max-w-3xl mx-auto space-y-3 mb-10">
+            <span className="inline-flex items-center gap-1.5 text-[9px] bg-blue-500/10 text-blue-400 border border-blue-500/30 px-3.5 py-1.5 rounded-full font-black uppercase tracking-widest font-mono shadow-[0_0_15px_rgba(59,130,246,0.1)]">
+              <Zap className="w-3 h-3 text-blue-400 animate-pulse" /> DIAGRAMAS TÁCTICOS INTERACTIVOS
             </span>
-            <h2 className="text-3xl md:text-4xl font-black text-blue-950 tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight">
               Muestra Real de los Ejercicios
             </h2>
-            <p className="text-sm text-blue-900/80 leading-relaxed">
-              Todos los ejercicios vienen con gráficos vectoriales limpios, explicaciones paso a paso de su desarrollo, objetivos clave y variantes de dificultad.
+            <p className="text-sm md:text-base text-slate-400 leading-relaxed">
+              Todos los ejercicios vienen con gráficos vectoriales limpios, explicaciones paso a paso de su desarrollo, objetivos clave y variantes de dificultad adaptables.
             </p>
           </div>
 
@@ -625,20 +630,33 @@ export default function App() {
             
             {/* Left selector menu - 1/3 column */}
             <div className="lg:col-span-4 flex flex-col gap-3">
-              <span className="text-[11px] font-mono tracking-wider text-slate-500 uppercase font-black px-1">SELECCIONA UN EJERCICIO:</span>
+              <span className="text-[10px] font-mono tracking-widest text-slate-500 uppercase font-black px-1 flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-ping"></span> SELECCIONA UN EJERCICIO DE LA PIZARRA:
+              </span>
               {DRILLS.map((drill, idx) => (
                 <button
                   key={drill.id}
                   onClick={() => setSelectedDrillIndex(idx)}
-                  className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 flex flex-col gap-1.5 ${
+                  className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 flex flex-col gap-2 relative overflow-hidden ${
                     selectedDrillIndex === idx
-                      ? 'bg-blue-100 border-blue-400 shadow-sm text-blue-950'
-                      : 'bg-white border-slate-200 hover:bg-slate-100 text-blue-900/80'
+                      ? 'bg-gradient-to-r from-blue-950/80 to-blue-900/40 border-blue-500/80 shadow-[0_0_20px_rgba(37,99,235,0.2)] text-white'
+                      : 'bg-slate-900/30 border-slate-800/80 hover:bg-slate-900/60 hover:border-slate-700/80 text-slate-400 hover:text-slate-200'
                   }`}
                 >
-                  <span className="text-[10px] font-mono font-bold text-orange-600 uppercase tracking-wider">
-                    {drill.category}
-                  </span>
+                  {/* Futuristic active border indicator */}
+                  {selectedDrillIndex === idx && (
+                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-orange-500" />
+                  )}
+                  <div className="flex justify-between items-center w-full">
+                    <span className={`text-[9px] font-mono font-bold uppercase tracking-wider ${
+                      selectedDrillIndex === idx ? 'text-orange-400' : 'text-slate-500'
+                    }`}>
+                      {drill.category}
+                    </span>
+                    <span className="text-[10px] font-mono text-slate-600">
+                      [0{idx + 1}]
+                    </span>
+                  </div>
                   <span className="text-xs md:text-sm font-black tracking-tight leading-snug">
                     {drill.title}
                   </span>
@@ -647,7 +665,9 @@ export default function App() {
             </div>
 
             {/* Right visualization - 2/3 column */}
-            <div className="lg:col-span-8 bg-white border border-slate-100 rounded-3xl p-4 md:p-5 shadow-md flex flex-col justify-between">
+            <div className="lg:col-span-8 bg-slate-900/40 border border-slate-800/80 rounded-3xl p-5 md:p-6 shadow-2xl backdrop-blur-md flex flex-col justify-between relative overflow-hidden">
+              {/* Subtle top light effect */}
+              <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
               
               <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
                 
@@ -662,32 +682,32 @@ export default function App() {
                 {/* Info details side */}
                 <div className="md:col-span-5 space-y-4">
                   <div>
-                    <h3 className="text-lg font-black text-blue-950 leading-tight">
-                      {DRILLS[selectedDrillIndex].title}
-                    </h3>
-                    <span className="text-[9px] font-mono font-bold bg-blue-50 text-blue-700 border border-blue-200/60 px-2 py-0.5 rounded uppercase inline-block mt-2">
+                    <span className="inline-flex text-[9px] font-mono font-bold bg-orange-500/10 text-orange-400 border border-orange-500/30 px-2.5 py-0.5 rounded-full uppercase tracking-wider">
                       DETALLES TÁCTICOS
                     </span>
+                    <h3 className="text-xl font-black text-white leading-tight mt-2">
+                      {DRILLS[selectedDrillIndex].title}
+                    </h3>
                   </div>
 
-                  <p className="text-xs text-blue-900/90 leading-relaxed">
+                  <p className="text-xs text-slate-300 leading-relaxed">
                     {DRILLS[selectedDrillIndex].description}
                   </p>
 
-                  <div className="space-y-2 border-t border-slate-100 pt-3">
-                    <p className="text-[11px] font-bold text-blue-950">
-                      🎯 Objetivo principal:
+                  <div className="space-y-1.5 border-t border-slate-800/80 pt-3">
+                    <p className="text-[11px] font-bold text-slate-200 flex items-center gap-1.5 font-mono uppercase tracking-wider">
+                      <Target className="w-3.5 h-3.5 text-orange-400" /> Objetivo principal:
                     </p>
-                    <p className="text-xs text-blue-900/75 leading-snug">
+                    <p className="text-xs text-slate-400 leading-snug">
                       {DRILLS[selectedDrillIndex].objective}
                     </p>
                   </div>
 
                   <div className="space-y-1">
-                    <p className="text-[11px] font-bold text-blue-950">
-                      📋 Organización:
+                    <p className="text-[11px] font-bold text-slate-200 flex items-center gap-1.5 font-mono uppercase tracking-wider">
+                      <Activity className="w-3.5 h-3.5 text-blue-400" /> Organización:
                     </p>
-                    <p className="text-xs text-blue-900/75 leading-snug">
+                    <p className="text-xs text-slate-400 leading-snug">
                       {DRILLS[selectedDrillIndex].organization}
                     </p>
                   </div>
@@ -695,26 +715,32 @@ export default function App() {
               </div>
 
               {/* Development breakdown bottom bar */}
-              <div className="border-t border-slate-100 mt-6 pt-5 grid grid-cols-1 md:grid-cols-2 gap-5 text-left">
-                <div className="space-y-2">
-                  <span className="text-[10px] font-mono font-bold text-blue-700 uppercase tracking-widest">PROGRESIÓN / PASOS</span>
-                  <ul className="space-y-1.5">
+              <div className="border-t border-slate-800/80 mt-6 pt-5 grid grid-cols-1 md:grid-cols-2 gap-5 text-left">
+                <div className="space-y-3">
+                  <span className="text-[10px] font-mono font-bold text-blue-400 uppercase tracking-widest flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 bg-blue-400 rounded-full" /> PROGRESIÓN DE JUEGO
+                  </span>
+                  <ul className="space-y-2">
                     {DRILLS[selectedDrillIndex].development.map((step, sIdx) => (
-                      <li key={sIdx} className="text-xs text-blue-900/90 flex items-start gap-2">
-                        <span className="text-blue-600 font-bold font-mono mt-0.5">{sIdx + 1}.</span>
-                        <span className="leading-snug">{step}</span>
+                      <li key={sIdx} className="text-xs text-slate-300 flex items-start gap-2.5">
+                        <span className="text-blue-400 font-black font-mono bg-blue-950/80 border border-blue-900 w-5 h-5 rounded flex items-center justify-center text-[10px] flex-shrink-0 mt-0.5 shadow-sm">
+                          0{sIdx + 1}
+                        </span>
+                        <span className="leading-relaxed pt-0.5">{step}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="space-y-2 bg-slate-50 p-3.5 rounded-xl border border-slate-200/60">
-                  <span className="text-[10px] font-mono font-bold text-orange-700 uppercase tracking-widest">VARIANTES DE DIFICULTAD</span>
-                  <ul className="space-y-1.5">
+                <div className="space-y-3 bg-slate-950/60 p-4 rounded-2xl border border-slate-800/80 shadow-[inset_0_2px_8px_rgba(0,0,0,0.5)]">
+                  <span className="text-[10px] font-mono font-bold text-orange-400 uppercase tracking-widest flex items-center gap-1.5">
+                    <Zap className="w-3.5 h-3.5 text-orange-400" /> VARIANTES DE DIFICULTAD
+                  </span>
+                  <ul className="space-y-2">
                     {DRILLS[selectedDrillIndex].variations.map((v, vIdx) => (
-                      <li key={vIdx} className="text-xs text-blue-900/90 flex items-start gap-2">
-                        <span className="text-orange-600 font-bold font-mono mt-0.5">✦</span>
-                        <span className="leading-snug">{v}</span>
+                      <li key={vIdx} className="text-xs text-slate-300 flex items-start gap-2">
+                        <span className="text-orange-400 font-bold font-mono mt-0.5">✦</span>
+                        <span className="leading-relaxed">{v}</span>
                       </li>
                     ))}
                   </ul>
@@ -879,7 +905,7 @@ export default function App() {
                 Planes de Entrenamientos Completos
               </h3>
               <p className="text-xs sm:text-sm text-orange-500 font-semibold italic">
-                Producto principal + 3 bonificaciones tácticas exclusivas
+                Producto principal + 4 bonificaciones tácticas exclusivas
               </p>
             </div>
 
@@ -914,6 +940,10 @@ export default function App() {
               </div>
               <div className="flex items-start gap-3">
                 <Check className="w-4.5 h-4.5 text-orange-500 mt-0.5 flex-shrink-0 stroke-[3]" />
+                <span>Bono 4: Lecciones en Video de Baloncesto <span className="text-orange-500/90 font-medium">(Valorizado en $59)</span></span>
+              </div>
+              <div className="flex items-start gap-3">
+                <Check className="w-4.5 h-4.5 text-orange-500 mt-0.5 flex-shrink-0 stroke-[3]" />
                 <span>Soporte técnico de por vida por correo electrónico</span>
               </div>
               <div className="flex items-start gap-3">
@@ -934,7 +964,7 @@ export default function App() {
             <div className="space-y-1.5 py-4 border-t border-slate-100/80">
               <div className="flex items-center justify-center gap-3 text-xs sm:text-sm font-semibold text-slate-500">
                 <span>Antes</span>
-                <span className="line-through text-red-500 font-bold">{convertAndFormat(246)}</span>
+                <span className="line-through text-red-500 font-bold">{convertAndFormat(305)}</span>
                 <span className="bg-emerald-100 text-emerald-800 font-black text-[10px] px-2 py-0.5 rounded tracking-wide uppercase">90% DTO.</span>
               </div>
               <div className="flex items-baseline justify-center gap-1">
