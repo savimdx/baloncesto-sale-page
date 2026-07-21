@@ -28,7 +28,9 @@ import {
   Zap,
   Target,
   Activity,
-  CreditCard
+  CreditCard,
+  Search,
+  X
 } from 'lucide-react';
 
 // Custom components
@@ -262,6 +264,17 @@ function OptimizedImage({
   );
 }
 
+const SCROLL_IMAGES = [
+  "https://i.postimg.cc/MHjRm0My/Screenshot-20260721-050749-Adobe-Acrobat.jpg",
+  "https://i.postimg.cc/kGt8vN6F/Screenshot-20260721-050833-Adobe-Acrobat.jpg",
+  "https://i.postimg.cc/NFrTk89k/Screenshot-20260721-050910-Adobe-Acrobat.jpg",
+  "https://i.postimg.cc/fy0Xf7t7/Screenshot-20260721-050935-Adobe-Acrobat.jpg",
+  "https://i.postimg.cc/c6y39KwK/Screenshot-20260721-050956-Adobe-Acrobat.jpg",
+  "https://i.postimg.cc/kD3S1VK8/Screenshot-20260721-051022-Adobe-Acrobat.jpg",
+  "https://i.postimg.cc/14hFCgwN/Screenshot-20260721-051046-Adobe-Acrobat.jpg",
+  "https://i.postimg.cc/qgVKbty3/Screenshot-20260721-051121-Adobe-Acrobat.jpg"
+];
+
 export default function App() {
   const { formattedPrice, currencyCode, isConverting, convertAndFormat } = useCurrency();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -270,6 +283,7 @@ export default function App() {
   const [selectedDrillIndex, setSelectedDrillIndex] = useState<number>(0);
   const [isTestimonialsPaused, setIsTestimonialsPaused] = useState<boolean>(false);
   const [checkoutUrl, setCheckoutUrl] = useState<string>("https://pay.hotmart.com/J106791177D?checkoutMode=10");
+  const [selectedZoomImage, setSelectedZoomImage] = useState<string | null>(null);
 
   useEffect(() => {
     // Capture tracking and UTM parameters from URL and persist them
@@ -655,151 +669,76 @@ export default function App() {
 
 
       {/* --- SECCIÓN 4: MUESTRA DEL PRODUCTO (INTERACTIVE DRILL VIEW) --- */}
-      <section id="muestra" className="py-12 md:py-16 px-4 bg-[#0a0f1d] border-y border-slate-900 relative overflow-hidden">
+      <section id="muestra" className="py-12 md:py-16 px-4 bg-white border-y border-slate-100 relative overflow-hidden">
         {/* Futuristic background glow grids */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-15 pointer-events-none" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-100 rounded-full blur-3xl pointer-events-none opacity-40" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-100 rounded-full blur-3xl pointer-events-none opacity-40" />
+        <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-30 pointer-events-none" />
 
         <div className="max-w-6xl mx-auto relative z-10">
           
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto space-y-3 mb-10">
-            <span className="inline-flex items-center gap-1.5 text-[9px] bg-blue-500/10 text-blue-400 border border-blue-500/30 px-3.5 py-1.5 rounded-full font-black uppercase tracking-widest font-mono shadow-[0_0_15px_rgba(59,130,246,0.1)]">
-              <Zap className="w-3 h-3 text-blue-400 animate-pulse" /> DIAGRAMAS TÁCTICOS INTERACTIVOS
+            <span className="inline-flex items-center gap-1.5 text-[9px] bg-blue-50 text-blue-600 border border-blue-200/60 px-3.5 py-1.5 rounded-full font-black uppercase tracking-widest font-mono shadow-[0_0_15px_rgba(59,130,246,0.05)]">
+              <Zap className="w-3 h-3 text-blue-600 animate-pulse" /> DIAGRAMAS TÁCTICOS INTERACTIVOS
             </span>
-            <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-black text-blue-950 tracking-tight">
               Muestra Real de los Ejercicios
             </h2>
-            <p className="text-sm md:text-base text-slate-400 leading-relaxed">
+            <p className="text-sm md:text-base text-slate-500 leading-relaxed">
               Todos los ejercicios vienen con gráficos vectoriales limpios, explicaciones paso a paso de su desarrollo, objetivos clave y variantes de dificultad adaptables.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+          {/* Infinite Scroll Preview Cards of PDF Pages */}
+          <div className="mb-14 overflow-hidden relative rounded-3xl border border-slate-200/60 bg-slate-50 p-4 py-6 shadow-xl backdrop-blur-md">
+            {/* Fade effect on borders */}
+            <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-white via-white/85 to-transparent z-10 pointer-events-none" />
+            <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-white via-white/85 to-transparent z-10 pointer-events-none" />
             
-            {/* Left selector menu - 1/3 column */}
-            <div className="lg:col-span-4 flex flex-col gap-3">
-              <span className="text-[10px] font-mono tracking-widest text-slate-500 uppercase font-black px-1 flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-ping"></span> SELECCIONA UN EJERCICIO DE LA PIZARRA:
-              </span>
-              {DRILLS.map((drill, idx) => (
-                <button
-                  key={drill.id}
-                  onClick={() => setSelectedDrillIndex(idx)}
-                  className={`w-full text-left p-4 rounded-2xl border transition-all duration-300 flex flex-col gap-2 relative overflow-hidden ${
-                    selectedDrillIndex === idx
-                      ? 'bg-gradient-to-r from-blue-950/80 to-blue-900/40 border-blue-500/80 shadow-[0_0_20px_rgba(37,99,235,0.2)] text-white'
-                      : 'bg-slate-900/30 border-slate-800/80 hover:bg-slate-900/60 hover:border-slate-700/80 text-slate-400 hover:text-slate-200'
-                  }`}
-                >
-                  {/* Futuristic active border indicator */}
-                  {selectedDrillIndex === idx && (
-                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-orange-500" />
-                  )}
-                  <div className="flex justify-between items-center w-full">
-                    <span className={`text-[9px] font-mono font-bold uppercase tracking-wider ${
-                      selectedDrillIndex === idx ? 'text-orange-400' : 'text-slate-500'
-                    }`}>
-                      {drill.category}
-                    </span>
-                    <span className="text-[10px] font-mono text-slate-600">
-                      [0{idx + 1}]
-                    </span>
+
+
+            <div className="flex w-max gap-5 animate-marquee hover:[animation-play-state:paused] active:[animation-play-state:paused] cursor-pointer">
+              {/* First copy of images */}
+              <div className="flex gap-5">
+                {SCROLL_IMAGES.map((imgUrl, i) => (
+                  <div 
+                    key={`scroll-img-1-${i}`}
+                    onClick={() => setSelectedZoomImage(imgUrl)}
+                    className="relative h-[340px] sm:h-[460px] md:h-[520px] aspect-[1/1.41] flex-shrink-0 bg-white border border-slate-200/80 hover:border-orange-500/50 rounded-2xl overflow-hidden shadow-lg hover:shadow-[0_0_25px_rgba(249,115,22,0.15)] transition-all duration-300 group"
+                  >
+                    <OptimizedImage 
+                      src={imgUrl} 
+                      alt={`Página manual ${i + 1}`}
+                      className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+                      loading="lazy"
+                      wrapperClassName="w-full h-full bg-white"
+                    />
                   </div>
-                  <span className="text-xs md:text-sm font-black tracking-tight leading-snug">
-                    {drill.title}
-                  </span>
-                </button>
-              ))}
-            </div>
-
-            {/* Right visualization - 2/3 column */}
-            <div className="lg:col-span-8 bg-slate-900/40 border border-slate-800/80 rounded-3xl p-5 md:p-6 shadow-2xl backdrop-blur-md flex flex-col justify-between relative overflow-hidden">
-              {/* Subtle top light effect */}
-              <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
-              
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-                
-                {/* Court side */}
-                <div className="md:col-span-7">
-                  <BasketballCourt
-                    players={DRILLS[selectedDrillIndex].players}
-                    lines={DRILLS[selectedDrillIndex].lines}
-                  />
-                </div>
-
-                {/* Info details side */}
-                <div className="md:col-span-5 space-y-4">
-                  <div>
-                    <span className="inline-flex text-[9px] font-mono font-bold bg-orange-500/10 text-orange-400 border border-orange-500/30 px-2.5 py-0.5 rounded-full uppercase tracking-wider">
-                      DETALLES TÁCTICOS
-                    </span>
-                    <h3 className="text-xl font-black text-white leading-tight mt-2">
-                      {DRILLS[selectedDrillIndex].title}
-                    </h3>
-                  </div>
-
-                  <p className="text-xs text-slate-300 leading-relaxed">
-                    {DRILLS[selectedDrillIndex].description}
-                  </p>
-
-                  <div className="space-y-1.5 border-t border-slate-800/80 pt-3">
-                    <p className="text-[11px] font-bold text-slate-200 flex items-center gap-1.5 font-mono uppercase tracking-wider">
-                      <Target className="w-3.5 h-3.5 text-orange-400" /> Objetivo principal:
-                    </p>
-                    <p className="text-xs text-slate-400 leading-snug">
-                      {DRILLS[selectedDrillIndex].objective}
-                    </p>
-                  </div>
-
-                  <div className="space-y-1">
-                    <p className="text-[11px] font-bold text-slate-200 flex items-center gap-1.5 font-mono uppercase tracking-wider">
-                      <Activity className="w-3.5 h-3.5 text-blue-400" /> Organización:
-                    </p>
-                    <p className="text-xs text-slate-400 leading-snug">
-                      {DRILLS[selectedDrillIndex].organization}
-                    </p>
-                  </div>
-                </div>
+                ))}
               </div>
-
-              {/* Development breakdown bottom bar */}
-              <div className="border-t border-slate-800/80 mt-6 pt-5 grid grid-cols-1 md:grid-cols-2 gap-5 text-left">
-                <div className="space-y-3">
-                  <span className="text-[10px] font-mono font-bold text-blue-400 uppercase tracking-widest flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 bg-blue-400 rounded-full" /> PROGRESIÓN DE JUEGO
-                  </span>
-                  <ul className="space-y-2">
-                    {DRILLS[selectedDrillIndex].development.map((step, sIdx) => (
-                      <li key={sIdx} className="text-xs text-slate-300 flex items-start gap-2.5">
-                        <span className="text-blue-400 font-black font-mono bg-blue-950/80 border border-blue-900 w-5 h-5 rounded flex items-center justify-center text-[10px] flex-shrink-0 mt-0.5 shadow-sm">
-                          0{sIdx + 1}
-                        </span>
-                        <span className="leading-relaxed pt-0.5">{step}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="space-y-3 bg-slate-950/60 p-4 rounded-2xl border border-slate-800/80 shadow-[inset_0_2px_8px_rgba(0,0,0,0.5)]">
-                  <span className="text-[10px] font-mono font-bold text-orange-400 uppercase tracking-widest flex items-center gap-1.5">
-                    <Zap className="w-3.5 h-3.5 text-orange-400" /> VARIANTES DE DIFICULTAD
-                  </span>
-                  <ul className="space-y-2">
-                    {DRILLS[selectedDrillIndex].variations.map((v, vIdx) => (
-                      <li key={vIdx} className="text-xs text-slate-300 flex items-start gap-2">
-                        <span className="text-orange-400 font-bold font-mono mt-0.5">✦</span>
-                        <span className="leading-relaxed">{v}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              {/* Second copy of images for infinite scroll loop */}
+              <div className="flex gap-5">
+                {SCROLL_IMAGES.map((imgUrl, i) => (
+                  <div 
+                    key={`scroll-img-2-${i}`}
+                    onClick={() => setSelectedZoomImage(imgUrl)}
+                    className="relative h-[340px] sm:h-[460px] md:h-[520px] aspect-[1/1.41] flex-shrink-0 bg-white border border-slate-200/80 hover:border-orange-500/50 rounded-2xl overflow-hidden shadow-lg hover:shadow-[0_0_25px_rgba(249,115,22,0.15)] transition-all duration-300 group"
+                  >
+                    <OptimizedImage 
+                      src={imgUrl} 
+                      alt={`Página manual ${i + 1}`}
+                      className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+                      loading="lazy"
+                      wrapperClassName="w-full h-full bg-white"
+                    />
+                  </div>
+                ))}
               </div>
-
             </div>
-
           </div>
+
+
 
         </div>
       </section>
@@ -1180,6 +1119,40 @@ export default function App() {
         )}
         <NotificationToast />
       </Suspense>
+
+      {/* Lightbox / Zoom Overlay */}
+      {selectedZoomImage && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/95 backdrop-blur-md transition-all duration-300"
+          onClick={() => setSelectedZoomImage(null)}
+        >
+          {/* Close button with high-contrast indicator */}
+          <button 
+            onClick={() => setSelectedZoomImage(null)}
+            className="absolute top-4 right-4 p-3 bg-slate-900/80 border border-slate-800 text-white rounded-full hover:bg-orange-500 hover:border-orange-500 transition-all duration-300 cursor-pointer shadow-lg"
+            aria-label="Cerrar vista"
+          >
+            <X className="w-6 h-6" />
+          </button>
+          
+          <div 
+            className="relative max-w-4xl max-h-[90vh] w-full flex flex-col items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="max-w-full max-h-[82vh] overflow-hidden rounded-2xl border border-slate-800 shadow-2xl bg-slate-950">
+              <img 
+                src={selectedZoomImage} 
+                alt="Página del manual ampliada" 
+                className="w-full h-full object-contain max-h-[82vh]"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+            <p className="mt-4 text-center text-slate-400 text-xs sm:text-sm font-mono bg-slate-950/80 border border-slate-900 px-4 py-2 rounded-full shadow-md">
+              Haz clic fuera o presiona la "X" para cerrar
+            </p>
+          </div>
+        </div>
+      )}
 
     </div>
   );
