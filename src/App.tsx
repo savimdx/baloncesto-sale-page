@@ -598,7 +598,8 @@ export default function App() {
                         src={bonus.image} 
                         alt={bonus.title} 
                         className="w-full h-full object-contain z-10 transition-transform duration-300 group-hover:scale-[1.05]"
-                        loading="lazy"
+                        loading={bonus.id === 'bon-4' ? 'eager' : 'lazy'}
+                        fetchPriority={bonus.id === 'bon-4' ? 'high' : 'auto'}
                         wrapperClassName="w-full h-full bg-transparent"
                       />
                     ) : (
