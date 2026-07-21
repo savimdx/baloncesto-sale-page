@@ -282,6 +282,7 @@ export default function App() {
   const [timeLeft, setTimeLeft] = useState<number>(1800); // 30 minutes in seconds
   const [selectedDrillIndex, setSelectedDrillIndex] = useState<number>(0);
   const [isTestimonialsPaused, setIsTestimonialsPaused] = useState<boolean>(false);
+  const [isMuestraPaused, setIsMuestraPaused] = useState<boolean>(false);
   const [checkoutUrl, setCheckoutUrl] = useState<string>("https://pay.hotmart.com/J106791177D?checkoutMode=10");
   const [selectedZoomImage, setSelectedZoomImage] = useState<string | null>(null);
 
@@ -691,20 +692,28 @@ export default function App() {
           </div>
 
           {/* Infinite Scroll Preview Cards of PDF Pages */}
-          <div className="mb-4 overflow-hidden relative rounded-3xl border border-slate-200/60 bg-slate-50 p-4 py-6 shadow-xl backdrop-blur-md">
+          <div 
+            className="mb-4 overflow-hidden relative rounded-3xl border border-slate-200/60 bg-slate-50 p-4 py-6 shadow-xl backdrop-blur-md"
+            onMouseEnter={() => setIsMuestraPaused(true)}
+            onMouseLeave={() => setIsMuestraPaused(false)}
+            onTouchStart={() => setIsMuestraPaused(true)}
+            onTouchEnd={() => setIsMuestraPaused(false)}
+          >
             {/* Fade effect on borders */}
             <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-white via-white/85 to-transparent z-10 pointer-events-none" />
             <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-white via-white/85 to-transparent z-10 pointer-events-none" />
             
 
 
-            <div className="flex w-max gap-5 animate-marquee hover:[animation-play-state:paused] active:[animation-play-state:paused] cursor-pointer">
+            <div 
+              className={`flex w-max gap-5 animate-marquee`}
+              style={{ animationPlayState: isMuestraPaused ? 'paused' : 'running' }}
+            >
               {/* First copy of images */}
               <div className="flex gap-5">
                 {SCROLL_IMAGES.map((imgUrl, i) => (
                   <div 
                     key={`scroll-img-1-${i}`}
-                    onClick={() => setSelectedZoomImage(imgUrl)}
                     className="relative h-[340px] sm:h-[460px] md:h-[520px] aspect-[1/1.41] flex-shrink-0 bg-white border border-slate-200/80 hover:border-orange-500/50 rounded-2xl overflow-hidden shadow-lg hover:shadow-[0_0_25px_rgba(249,115,22,0.15)] transition-all duration-300 group"
                   >
                     <OptimizedImage 
@@ -722,7 +731,6 @@ export default function App() {
                 {SCROLL_IMAGES.map((imgUrl, i) => (
                   <div 
                     key={`scroll-img-2-${i}`}
-                    onClick={() => setSelectedZoomImage(imgUrl)}
                     className="relative h-[340px] sm:h-[460px] md:h-[520px] aspect-[1/1.41] flex-shrink-0 bg-white border border-slate-200/80 hover:border-orange-500/50 rounded-2xl overflow-hidden shadow-lg hover:shadow-[0_0_25px_rgba(249,115,22,0.15)] transition-all duration-300 group"
                   >
                     <OptimizedImage 
